@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public GameObject gameMode;
     public GameObject gridSpace;
     public int count;
+
     public void PlayerChooseReference()
     {
         playerChoiseSide = gameMode.GetComponent<GameMode>().playerChoise;
@@ -19,7 +20,7 @@ public class GameController : MonoBehaviour
 
     public void CheckWin()
     {
-        Debug.Log("Checkwin");
+        PlayerChooseReference();
             if (buttonTextList[0].text == playerChoiseSide && buttonTextList[1].text == playerChoiseSide && buttonTextList[2].text == playerChoiseSide)
             {
                 GameOver();
@@ -52,13 +53,14 @@ public class GameController : MonoBehaviour
             {
                 GameOver();
             }
+        Debug.Log("Checkwin");
+      //  NextTurnAI();
         
-       NextTurnAI();
     }
 
     void NextTurnAI()
     {
-        for (int i = 0; i < buttonTextList.Length && buttonTextList[i].text == playerChoiseSide; i++)
+        for (int i = 0; i < buttonTextList.Length && buttonTextList[i].text != playerChoiseSide; i++)
             {
             gridSpace.GetComponent<GridSpace>().buttonText.text = "O";
             count = i;
@@ -67,7 +69,7 @@ public class GameController : MonoBehaviour
     }
     void GameOver()
     {
-      
+        Debug.Log("GameOver");
     }
     
 }

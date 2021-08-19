@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cdf6e5225122a48bd44984ed937b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1939862992}
   gameMode: {fileID: 1404491615}
   buttonSpace: {fileID: 68473841}
   buttonText: {fileID: 842211323}
@@ -182,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cdf6e5225122a48bd44984ed937b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1939862992}
   gameMode: {fileID: 1404491615}
   buttonSpace: {fileID: 173489653}
   buttonText: {fileID: 1323532167}
@@ -1061,6 +1063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cdf6e5225122a48bd44984ed937b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1939862992}
   gameMode: {fileID: 1404491615}
   buttonSpace: {fileID: 366859952}
   buttonText: {fileID: 581280368}
@@ -1103,6 +1106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cdf6e5225122a48bd44984ed937b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1939862992}
   gameMode: {fileID: 1404491615}
   buttonSpace: {fileID: 423822293}
   buttonText: {fileID: 1925809833}
@@ -1255,10 +1259,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1368325673}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: gameMode
-      value: 
-      objectReference: {fileID: 1404491615}
     - target: {fileID: 4556524120322914673, guid: 6c495243acb3da84ebc0e4fd4a15524a, type: 3}
       propertyPath: m_Text
       value: 
@@ -2439,7 +2439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1142856397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3643,6 +3643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cdf6e5225122a48bd44984ed937b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1939862992}
   gameMode: {fileID: 1404491615}
   buttonSpace: {fileID: 1389383202}
   buttonText: {fileID: 2064883922}
@@ -3771,6 +3772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cdf6e5225122a48bd44984ed937b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1939862992}
   gameMode: {fileID: 1404491615}
   buttonSpace: {fileID: 1408666984}
   buttonText: {fileID: 201333067}
@@ -4491,6 +4493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cdf6e5225122a48bd44984ed937b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1939862992}
   gameMode: {fileID: 1404491615}
   buttonSpace: {fileID: 1757806077}
   buttonText: {fileID: 66617681}
@@ -4613,10 +4616,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1917351220}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: gameMode
-      value: 
-      objectReference: {fileID: 1404491615}
     - target: {fileID: 4556524120322914673, guid: 6c495243acb3da84ebc0e4fd4a15524a, type: 3}
       propertyPath: m_Text
       value: 
@@ -4941,16 +4940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100d3d2e265763844925e05b4008d76f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSpaceList:
-  - {fileID: 1925809833}
-  - {fileID: 66617681}
-  - {fileID: 842211323}
-  - {fileID: 1323532167}
-  - {fileID: 201333067}
-  - {fileID: 385646706}
-  - {fileID: 2064883922}
-  - {fileID: 581280368}
-  - {fileID: 2089992475}
+  buttonTextList: []
   restart: {fileID: 1122995999}
   gameMode: {fileID: 1404491615}
   gridSpace: {fileID: 423822291}
@@ -5117,6 +5107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cdf6e5225122a48bd44984ed937b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1939862992}
   gameMode: {fileID: 1404491615}
   buttonSpace: {fileID: 1943209890}
   buttonText: {fileID: 385646706}
@@ -5500,6 +5491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cdf6e5225122a48bd44984ed937b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1939862992}
   gameMode: {fileID: 1404491615}
   buttonSpace: {fileID: 2078368087}
   buttonText: {fileID: 2089992475}
