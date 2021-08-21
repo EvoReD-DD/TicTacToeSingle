@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
     {
             PlayerChooseReference();
             AIChoice();
+        //player check wins
             if (buttonTextList[0].text == playerChoiseSide && buttonTextList[1].text == playerChoiseSide && buttonTextList[2].text == playerChoiseSide)
             {
                 GameOver();
@@ -32,12 +33,12 @@ public class GameController : MonoBehaviour
             {
                 GameOver();
                 gameOvertTrigger = true;
-        }
+            }
             if (buttonTextList[6].text == playerChoiseSide && buttonTextList[7].text == playerChoiseSide && buttonTextList[8].text == playerChoiseSide)
             {
                 GameOver();
                 gameOvertTrigger = true;
-        }
+            }
             if (buttonTextList[0].text == playerChoiseSide && buttonTextList[3].text == playerChoiseSide && buttonTextList[6].text == playerChoiseSide)
             {
                 GameOver();
@@ -59,6 +60,47 @@ public class GameController : MonoBehaviour
                 gameOvertTrigger = true;
             }
             if (buttonTextList[2].text == playerChoiseSide && buttonTextList[4].text == playerChoiseSide && buttonTextList[6].text == playerChoiseSide)
+            {
+                GameOver();
+                gameOvertTrigger = true;
+            }
+        //Ai check wins
+            if (buttonTextList[0].text == AISymbol && buttonTextList[1].text == AISymbol && buttonTextList[2].text == AISymbol)
+            {
+                GameOver();
+                gameOvertTrigger = true;
+            }
+            if (buttonTextList[3].text == AISymbol && buttonTextList[4].text == AISymbol && buttonTextList[5].text == AISymbol)
+            {
+                GameOver();
+                gameOvertTrigger = true;
+            }
+            if (buttonTextList[6].text == AISymbol && buttonTextList[7].text == AISymbol && buttonTextList[8].text == AISymbol)
+            {
+                GameOver();
+                gameOvertTrigger = true;
+            }
+            if (buttonTextList[0].text == AISymbol && buttonTextList[3].text == AISymbol && buttonTextList[6].text == AISymbol)
+            {
+                GameOver();
+                gameOvertTrigger = true;
+            }
+            if (buttonTextList[1].text == AISymbol && buttonTextList[4].text == AISymbol && buttonTextList[7].text == AISymbol)
+            {
+                GameOver();
+                gameOvertTrigger = true;
+            }
+            if (buttonTextList[2].text == AISymbol && buttonTextList[5].text == AISymbol && buttonTextList[8].text == AISymbol)
+            {
+                GameOver();
+                gameOvertTrigger = true;
+            }
+            if (buttonTextList[0].text == AISymbol && buttonTextList[4].text == AISymbol && buttonTextList[8].text == AISymbol)
+            {
+                GameOver();
+                gameOvertTrigger = true;
+            }
+            if (buttonTextList[2].text == AISymbol && buttonTextList[4].text == AISymbol && buttonTextList[6].text == AISymbol)
             {
                 GameOver();
                 gameOvertTrigger = true;
