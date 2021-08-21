@@ -8,8 +8,8 @@ public class GameMode : MonoBehaviour
 {
     
     public string playerChoise;
-    string playerX = "X";
-    string playerO = "O";
+    public string playerX = "X";
+    public string playerO = "O";
     public Toggle modeChange;
     public Toggle playerChange;
     public Text modeText;
