@@ -18,104 +18,103 @@ public class GameController : MonoBehaviour
         playerChoiseSide = gameMode.GetComponent<GameMode>().playerChoise;
         
     }
-
     public void CheckWin()
     {
-            
             PlayerChoiseReference();
             AIReversedChoice();
         //player check wins
             if (buttonTextList[0].text == playerChoiseSide && buttonTextList[1].text == playerChoiseSide && buttonTextList[2].text == playerChoiseSide)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[3].text == playerChoiseSide && buttonTextList[4].text == playerChoiseSide && buttonTextList[5].text == playerChoiseSide)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[6].text == playerChoiseSide && buttonTextList[7].text == playerChoiseSide && buttonTextList[8].text == playerChoiseSide)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[0].text == playerChoiseSide && buttonTextList[3].text == playerChoiseSide && buttonTextList[6].text == playerChoiseSide)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[1].text == playerChoiseSide && buttonTextList[4].text == playerChoiseSide && buttonTextList[7].text == playerChoiseSide)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[2].text == playerChoiseSide && buttonTextList[5].text == playerChoiseSide && buttonTextList[8].text == playerChoiseSide)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[0].text == playerChoiseSide && buttonTextList[4].text == playerChoiseSide && buttonTextList[8].text == playerChoiseSide)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[2].text == playerChoiseSide && buttonTextList[4].text == playerChoiseSide && buttonTextList[6].text == playerChoiseSide)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
         //Ai check wins
             if (buttonTextList[0].text == AISymbol && buttonTextList[1].text == AISymbol && buttonTextList[2].text == AISymbol)
-            {
-                GameOver();
+                {
                 gameOverTrigger = true;
-            }
+                GameOver();
+
+                }
             if (buttonTextList[3].text == AISymbol && buttonTextList[4].text == AISymbol && buttonTextList[5].text == AISymbol)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[6].text == AISymbol && buttonTextList[7].text == AISymbol && buttonTextList[8].text == AISymbol)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[0].text == AISymbol && buttonTextList[3].text == AISymbol && buttonTextList[6].text == AISymbol)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[1].text == AISymbol && buttonTextList[4].text == AISymbol && buttonTextList[7].text == AISymbol)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[2].text == AISymbol && buttonTextList[5].text == AISymbol && buttonTextList[8].text == AISymbol)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[0].text == AISymbol && buttonTextList[4].text == AISymbol && buttonTextList[8].text == AISymbol)
-            {
-                GameOver();
-                gameOverTrigger = true;
-            }
+                {
+                    gameOverTrigger = true;
+                    GameOver();
+                }
             if (buttonTextList[2].text == AISymbol && buttonTextList[4].text == AISymbol && buttonTextList[6].text == AISymbol)
-            {
-                GameOver();
+                {
                 gameOverTrigger = true;
-            }
-        GameOver();
-        NextTurnAI();
+                GameOver();
+                }
+            GameOver();
+            NextTurnAI();
         
     }
-
+    //Easy level AI
     void NextTurnAI()
     {
         int random = Random.Range(0, buttonTextList.Length);
         for (int i = gameIteration; i < buttonTextList.Length; i++)
-            {
+        {
             if (buttonTextList[random].text != playerChoiseSide && buttonTextList[random].text != AISymbol)
             {
                 buttonTextList[random].text = AISymbol;
