@@ -1,19 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.UI;
 
 public class GameMode : MonoBehaviour
 {
     
-    public string playerChoise;
+    static public string playerChoise;
     public string playerX = "X";
     public string playerO = "O";
-    public Toggle modeChange;
-    public Toggle playerChange;
-    public Text modeText;
-    public Text playerText;
+    [SerializeField] Toggle playerChange;
+    [SerializeField] Text playerText;
     
      void Start()
     {

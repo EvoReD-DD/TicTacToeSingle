@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GridSpace : MonoBehaviour
 {
-    public GameObject gameController;
-    public GameObject gameMode;
-    public Button buttonSpace;
-    public Text buttonText;
+    [SerializeField] GameController gameController;
+    [SerializeField] GameMode gameMode;
+    [SerializeField] Button buttonSpace;
+    [SerializeField] Text buttonText;
     public void SetSpace()
     {
-        buttonText.text = gameMode.GetComponent<GameMode>().playerChoise;
+        buttonText.text = GameMode.playerChoise;
         buttonSpace.interactable = false;
-        gameController.GetComponent<GameController>().CheckWin();
+        gameController.CheckWin();
     }
 }
