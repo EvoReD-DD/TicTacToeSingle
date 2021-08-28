@@ -4,18 +4,23 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [SerializeField] Text[] buttonTextList;
-
     [SerializeField] GameObject restart;
     [SerializeField] GameMode gameMode;
     [SerializeField] GridSpace gridSpace;
     int gameIteration = 0;
     bool gameOverTrigger=false;
     string AISymbol;
-    public bool CheckWin()
+
+    void GameCheck()
     {
-            AIReversedChoice();
-        //player check wins
-            if (buttonTextList[0].text == GameMode.playerChoise && buttonTextList[1].text == GameMode.playerChoise && buttonTextList[2].text == GameMode.playerChoise)
+        AIReversedChoice();
+        /******/
+        GameOver();
+        NextTurnAI();
+    }
+    public bool CheckWin(params string[] symbolCheck)
+    {
+            if (buttonTextList[0].text == symbolCheck[] && buttonTextList[1].text == GameMode.playerChoise && buttonTextList[2].text == GameMode.playerChoise)
                 {
                     gameOverTrigger = true;
                     GameOver();
@@ -56,9 +61,6 @@ public class GameController : MonoBehaviour
                     GameOver();
                 }
         return true;
-            GameOver();
-            NextTurnAI();
-        
     }
     //Easy level AI
     void NextTurnAI()
@@ -91,7 +93,7 @@ public class GameController : MonoBehaviour
             restart.GetComponent<RectTransform>().SetAsLastSibling();
         }
     }
-    void AIReversedChoice()
+    string AIReversedChoice()
     {
         if (GameMode.playerChoise == gameMode.playerX)
         {
@@ -101,6 +103,7 @@ public class GameController : MonoBehaviour
         { 
             AISymbol = gameMode.playerX;
         }
+        return AISymbol;
     }
     
 }
