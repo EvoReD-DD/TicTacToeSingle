@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] Text[] buttonTextList;
     [SerializeField] GameObject restart;
     [SerializeField] GameMode gameMode;
     [SerializeField] GridSpace gridSpace;
+    public Text[] buttonTextList;
     int gameIteration = 0;
     bool gameOverTrigger=false;
     string AISymbol;
@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     }
     public bool CheckWin(params string[] symbolCheck)
     {
-            if (buttonTextList[0].text == symbolCheck[] && buttonTextList[1].text == GameMode.playerChoise && buttonTextList[2].text == GameMode.playerChoise)
+            if (buttonTextList[0].text == GameMode.playerChoise && buttonTextList[1].text == GameMode.playerChoise && buttonTextList[2].text == GameMode.playerChoise)
                 {
                     gameOverTrigger = true;
                     GameOver();
