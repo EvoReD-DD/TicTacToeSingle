@@ -9,7 +9,7 @@ public class GridSpace : MonoBehaviour
     [SerializeField] Text buttonText;
     public void SetSpace()
     {
-        buttonText.text = GameMode.playerChoise;
+        buttonText.text = gameMode.playerChoise;
         buttonSpace.interactable = false;
         gameController.CheckWin();
     }

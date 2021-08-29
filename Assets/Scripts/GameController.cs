@@ -5,73 +5,36 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] GameObject restart;
     [SerializeField] GameMode gameMode;
-    [SerializeField] GridSpace gridSpace;
-    public Text[] buttonTextList;
+    [SerializeField] GameObject prefab;
+
     int gameIteration = 0;
-    bool gameOverTrigger=false;
+    bool gameOverTrigger = false;
     string AISymbol;
 
-    void GameCheck()
+    public void CheckWin()
     {
-        AIReversedChoice();
-        /******/
+        for (int i = 0; i < gameMode.prefabArray.Length; i++)
+        {
+            if (gameMode.prefabArray[i] == gameMode.prefabArray[i + 1])
+            {
+                gameOverTrigger = true;
+                GameOver();
+            }
+        }
         GameOver();
         NextTurnAI();
-    }
-    public bool CheckWin(params string[] symbolCheck)
-    {
-            if (buttonTextList[0].text == GameMode.playerChoise && buttonTextList[1].text == GameMode.playerChoise && buttonTextList[2].text == GameMode.playerChoise)
-                {
-                    gameOverTrigger = true;
-                    GameOver();
-                }
-            if (buttonTextList[3].text == GameMode.playerChoise && buttonTextList[4].text == GameMode.playerChoise && buttonTextList[5].text == GameMode.playerChoise)
-                {
-                    gameOverTrigger = true;
-                    GameOver();
-                }
-            if (buttonTextList[6].text == GameMode.playerChoise && buttonTextList[7].text == GameMode.playerChoise && buttonTextList[8].text == GameMode.playerChoise)
-                {
-                    gameOverTrigger = true;
-                    GameOver();
-                }
-            if (buttonTextList[0].text == GameMode.playerChoise && buttonTextList[3].text == GameMode.playerChoise && buttonTextList[6].text == GameMode.playerChoise)
-                {
-                    gameOverTrigger = true;
-                    GameOver();
-                }
-            if (buttonTextList[1].text == GameMode.playerChoise && buttonTextList[4].text == GameMode.playerChoise && buttonTextList[7].text == GameMode.playerChoise)
-                {
-                    gameOverTrigger = true;
-                    GameOver();
-                }
-            if (buttonTextList[2].text == GameMode.playerChoise && buttonTextList[5].text == GameMode.playerChoise && buttonTextList[8].text == GameMode.playerChoise)
-                {
-                    gameOverTrigger = true;
-                    GameOver();
-                }
-            if (buttonTextList[0].text == GameMode.playerChoise && buttonTextList[4].text == GameMode.playerChoise && buttonTextList[8].text == GameMode.playerChoise)
-                {
-                    gameOverTrigger = true;
-                    GameOver();
-                }
-            if (buttonTextList[2].text == GameMode.playerChoise && buttonTextList[4].text == GameMode.playerChoise && buttonTextList[6].text == GameMode.playerChoise)
-                {
-                    gameOverTrigger = true;
-                    GameOver();
-                }
-        return true;
     }
     //Easy level AI
     void NextTurnAI()
     {
-        int random = Random.Range(0, buttonTextList.Length);
-        for (int i = gameIteration; i < buttonTextList.Length; i++)
+        AIReversedChoice();
+        int random = Random.Range(0, gameMode.prefabArray.Length);
+        for (int i = gameIteration; i < gameMode.prefabArray.Length; i++)
         {
-            if (buttonTextList[random].text != GameMode.playerChoise && buttonTextList[random].text != AISymbol)
+            if (gameMode.prefabArray[random].GetComponent<Text>().text != gameMode.playerChoise && gameMode.prefabArray[random].GetComponent<Text>().text != AISymbol)
             {
-                buttonTextList[random].text = AISymbol;
-                buttonTextList[random].GetComponentInParent<Button>().interactable = false;
+                gameMode.prefabArray[random].GetComponent<Text>().text = AISymbol;
+                gameMode.prefabArray[random].GetComponentInParent<Button>().interactable = false;
                 gameIteration = i++;
                 break;
             }
@@ -82,20 +45,20 @@ public class GameController : MonoBehaviour
     {
         if (gameOverTrigger == true)
         {
-            for (int i = 0; i < buttonTextList.Length; i++)
+            for (int i = 0; i < gameMode.prefabArray.Length; i++)
             {
-                buttonTextList[i].GetComponentInParent<Button>().interactable = false;
+                gameMode.prefabArray[i].GetComponentInParent<Button>().interactable = false;
                 restart.SetActive(true);
                 restart.GetComponent<RectTransform>().SetAsLastSibling();
             }
-            buttonTextList[gameIteration].GetComponentInParent<Button>().interactable = false;
+            gameMode.prefabArray[gameIteration].GetComponentInParent<Button>().interactable = false;
             restart.SetActive(true);
             restart.GetComponent<RectTransform>().SetAsLastSibling();
         }
     }
     string AIReversedChoice()
     {
-        if (GameMode.playerChoise == gameMode.playerX)
+        if (gameMode.playerChoise == gameMode.playerX)
         {
             AISymbol = gameMode.playerO;
         }

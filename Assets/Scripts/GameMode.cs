@@ -6,14 +6,14 @@ public class GameMode : MonoBehaviour
     [SerializeField] Toggle playerChange;
     [SerializeField] Dropdown gridSize;
     [SerializeField] Text playerText;
-    [SerializeField] GameObject createdGrid;
     [SerializeField] Transform gridParent;
-    static public string playerChoise;
+    [SerializeField] GridLayoutGroup gridLayout;
+    [SerializeField] GameObject prefabGrid;
+    public GameObject[] prefabArray; 
+    public string playerChoise;
     int sizeGridValue;
     public string playerX = "X";
     public string playerO = "O";
-    int rows;
-    int cols;
 
 
     void Start()
@@ -21,12 +21,14 @@ public class GameMode : MonoBehaviour
         playerChoise = playerX;
 
     }
+
     public void CreateGrid()
     {
         GridSize();
         for (int i = 0; i < sizeGridValue; i++)
             {
-                var clone = Instantiate(createdGrid, new Vector3(0,0,0), Quaternion.identity, gridParent);
+                var createdGrid = Instantiate(prefabGrid, new Vector3(0,0,0), Quaternion.identity, gridParent);
+                prefabArray[i] = createdGrid;
             }
     }
 
@@ -35,26 +37,31 @@ public class GameMode : MonoBehaviour
         if (gridSize.value == 0)
             {
             sizeGridValue = 9;
-            rows = 3;
-            cols = 3;
+            prefabArray= new GameObject[9];
             }
         if (gridSize.value == 1)
             {
             sizeGridValue = 36;
-            rows = 6;
-            cols = 6;
+            gridLayout.constraintCount = 6;
+            gridLayout.cellSize = new Vector3(175, 175);
+            prefabGrid.GetComponentInChildren<Text>().fontSize = 150;
+            prefabArray = new GameObject[36];
         }
         if (gridSize.value == 2)
             {
             sizeGridValue = 81;
-            rows = 9;
-            cols = 9;
+            prefabGrid.GetComponentInChildren<Text>().fontSize = 100;
+            gridLayout.constraintCount = 9;
+            gridLayout.cellSize = new Vector3(150, 150);
+            prefabArray = new GameObject[81];
         }
         if (gridSize.value == 3)
             {
             sizeGridValue = 225;
-            rows = 15;
-            cols = 15;
+            prefabGrid.GetComponentInChildren<Text>().fontSize = 60;
+            gridLayout.constraintCount = 15;
+            gridLayout.cellSize = new Vector3(68, 68);
+            prefabArray = new GameObject[225];
         }
     }
     public void PlayerChoose()
