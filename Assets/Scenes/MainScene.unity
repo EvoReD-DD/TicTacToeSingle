@@ -2228,6 +2228,8 @@ MonoBehaviour:
   gridLayout: {fileID: 1368325674}
   prefabGrid: {fileID: 1725687072}
   prefabArray: []
+  playerChoise: 
+  sizeValue: 0
   playerX: X
   playerO: O
 --- !u!223 &1404491619

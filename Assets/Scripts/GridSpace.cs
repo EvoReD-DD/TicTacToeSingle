@@ -11,6 +11,7 @@ public class GridSpace : MonoBehaviour
     {
         buttonText.text = gameMode.playerChoise;
         buttonSpace.interactable = false;
-        gameController.CheckWin();
+        //gameMode.symbolArray = new string[,];
+        gameController.CheckWin(gameMode.playerChoise,gameMode.sizeValue);
     }
 }
