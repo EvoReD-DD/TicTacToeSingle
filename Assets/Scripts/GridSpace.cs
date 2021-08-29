@@ -9,9 +9,14 @@ public class GridSpace : MonoBehaviour
     [SerializeField] Text buttonText;
     public void SetSpace()
     {
+        bool nextTurn=false;
         buttonText.text = gameMode.playerChoise;
         buttonSpace.interactable = false;
-        //gameMode.symbolArray = new string[,];
-        gameController.CheckWin(gameMode.playerChoise,gameMode.sizeValue);
+        nextTurn = gameController.CheckWin(gameMode.playerChoise,gameMode.sizeValue);
+        if (nextTurn)
+        {
+            gameController.NextTurnAI();
+        }
+        
     }
 }

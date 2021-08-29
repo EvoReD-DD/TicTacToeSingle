@@ -1,103 +1,125 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] GameObject restart;
-    [SerializeField] GameMode gameMode;
-    [SerializeField] GameObject prefab;
-    bool gameOverTrigger = false;
-    string AISymbol;
+[SerializeField] GameObject restart;
+[SerializeField] GameMode gameMode;
+[SerializeField] GameObject prefab;
+bool gameOverTrigger = false;
+string AISymbol;
 
 
-    public bool CheckWin(string symb, int sizeGrid)
+public bool CheckWin(string symb, int sizeGrid)
+{
+    for (int col = 0; col < sizeGrid; col++)
     {
-        for (int col = 0; col < 3; col++)
+        for (int row = 0; row < sizeGrid; row++)
         {
-            for (int row = 0; row < 3; row++)
+            if (CheckDiagonal(symb, sizeGrid) || CheckLanes(symb, sizeGrid))
             {
-                if (CheckDiagonal(symb, sizeGrid) || CheckLanes(symb, sizeGrid)) return true;
+                GameOver(true);
             }
         }
-        return false;
     }
 
-    bool CheckDiagonal(string symb, int sizeGrid)
+    GameOver(false);
+        return true;
+}
+
+bool CheckDiagonal(string symb, int sizeGrid)
+{
+    bool toright, toleft;
+    toright = true;
+    toleft = true;
+    for (int i = 0; i < sizeGrid; i++)
     {
-        bool toright, toleft;
-        toright = true;
-        toleft = true;
-        for (int i = 0; i < sizeGrid; i++)
+        toright &= (gameMode.prefabArray[i,i].GetComponentInChildren<Text>().text == symb);
+        toleft &= (gameMode.prefabArray[sizeGrid - i - 1,i].GetComponentInChildren<Text>().text == symb);
+    }
+    if (toright || toleft)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool CheckLanes(string symb, int sizeGrid)
+{
+    bool cols, rows;
+    for (int col = 0; col < sizeGrid; col++)
+    {
+        cols = true;
+        rows = true;
+        for (int row = 0; row < sizeGrid; row++)
         {
-            toright &= (gameMode.symbolArray[i,i] == symb);
-            toleft &= (gameMode.symbolArray[4 - i - 1,i] == symb);
+            cols &= (gameMode.prefabArray[col,row].GetComponentInChildren<Text>().text == symb);
+            rows &= (gameMode.prefabArray[row,col].GetComponentInChildren<Text>().text == symb);
         }
-        return false;
+        if (cols || rows)
+        {
+            return true;
+        }
     }
 
-    bool CheckLanes(string symb, int sizeGrid)
+    return false;
+}
+//Easy level AI
+public void NextTurnAI()
+{
+    AIReversedChoice();
+    bool result = true;
+    while (result)
     {
-        bool cols, rows;
-        for (int col = 0; col < sizeGrid; col++)
-        {
-            cols = true;
-            rows = true;
-            for (int row = 0; row < sizeGrid; row++)
+        int row = Random.Range(0, gameMode.sizeValue);
+        int cell = Random.Range(0, gameMode.sizeValue);
+        GameObject cellcheck = gameMode.prefabArray[row, cell];
+        if (cellcheck.GetComponentInChildren<Text>().text != gameMode.playerChoise && cellcheck.GetComponentInChildren<Text>().text != AISymbol)
             {
-                cols &= (gameMode.symbolArray[col,row] == symb);
-                rows &= (gameMode.symbolArray[row,col] == symb);
+            cellcheck.GetComponentInChildren<Text>().text = AISymbol;
+            cellcheck.GetComponent<Button>().interactable = false;
+            result = false;
             }
-            if (cols || rows)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
-    //Easy level AI
-    /*void NextTurnAI()
+}
+void GameOver(bool isGameOver)
+{
+   if (isGameOver)
     {
-        AIReversedChoice();
-        int random = Random.Range(0, gameMode.symbolArray.Length);
-        for (int i = gameIteration; i < gameMode.symbolArray.Length; i++)
-        {
-            if (gameMode.symbolArray[random].GetComponent<Text>().text != gameMode.playerChoise && gameMode.symbolArray[random].GetComponent<Text>().text != AISymbol)
+        restart.SetActive(true);
+        restart.GetComponent<RectTransform>().SetAsLastSibling();
+    }
+    else {
+        List<GameObject> resultArray = new List<GameObject>();
+            for (int i = 0; i < gameMode.sizeValue; i++)
             {
-                gameMode.symbolArray[random].GetComponent<Text>().text = AISymbol;
-                gameMode.symbolArray[random].GetComponentInParent<Button>().interactable = false;
-                gameIteration = i++;
-                break;
+            for (int y = 0; y < gameMode.sizeValue; y++)
+                {
+                if (gameMode.prefabArray[i, y].GetComponentInChildren<Text>().text == gameMode.playerChoise || gameMode.prefabArray[i, y].GetComponentInChildren<Text>().text == AISymbol)
+                    {
+                    resultArray.Add(gameMode.prefabArray[i, y]);
+                    }
+                }
             }
-        }
-       
-    }*/
-    void GameOver()
-    {
-        if (gameOverTrigger == true)
+        if (resultArray.Count==gameMode.sizeGridValue)
         {
-            for (int i = 0; i < gameMode.prefabArray.Length; i++)
-            {
-                gameMode.prefabArray[i,i].GetComponentInParent<Button>().interactable = false;
-                restart.SetActive(true);
-                restart.GetComponent<RectTransform>().SetAsLastSibling();
-            }
-           /* gameMode.symbolArray[gameIteration].GetComponentInParent<Button>().interactable = false;
             restart.SetActive(true);
-            restart.GetComponent<RectTransform>().SetAsLastSibling();*/
+            restart.GetComponent<RectTransform>().SetAsLastSibling();
         }
     }
-    string AIReversedChoice()
+}
+string AIReversedChoice()
+{
+    if (gameMode.playerChoise == gameMode.playerX)
     {
-        if (gameMode.playerChoise == gameMode.playerX)
-        {
-            AISymbol = gameMode.playerO;
-        }
-        else 
-        { 
-            AISymbol = gameMode.playerX;
-        }
-        return AISymbol;
+        AISymbol = gameMode.playerO;
     }
+    else 
+    { 
+        AISymbol = gameMode.playerX;
+    }
+    return AISymbol;
+}
     
 }

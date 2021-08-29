@@ -13,7 +13,7 @@ public class GameMode : MonoBehaviour
     public string[,] symbolArray;
     
     public string playerChoise;
-    int sizeGridValue;
+    public int sizeGridValue;
     public int sizeValue;
     public string playerX = "X";
     public string playerO = "O";
@@ -28,10 +28,13 @@ public class GameMode : MonoBehaviour
     public void CreateGrid()
     {
         GridSize();
-        for (int i = 0; i < sizeGridValue; i++)
+        for (int i = 0; i < sizeValue; i++)
             {
-                var createdGrid = Instantiate(prefabGrid, new Vector3(0,0,0), Quaternion.identity, gridParent);
-                prefabArray[i,i] = createdGrid;
+            for (int y = 0; y < sizeValue; y++)
+            {
+                var createdGrid = Instantiate(prefabGrid, new Vector3(0, 0, 0), Quaternion.identity, gridParent);
+                prefabArray[i, y] = createdGrid;
+            }
             }
     }
 
