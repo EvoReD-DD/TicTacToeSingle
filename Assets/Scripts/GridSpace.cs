@@ -16,6 +16,7 @@ public class GridSpace : MonoBehaviour
         if (nextTurn)
         {
             gameController.NextTurnAI();
+           
         }
         
     }
