@@ -33,8 +33,8 @@ bool CheckDiagonal(string symb, int sizeGrid)
     toleft = true;
     for (int i = 0; i < sizeGrid; i++)
     {
-        toright &= (gameMode.prefabArray[i, i].GetComponentInChildren<Text>().text == symb);
-        toleft &= (gameMode.prefabArray[sizeGrid - i - 1, i].GetComponentInChildren<Text>().text == symb);
+        toright &= (gameMode.PrefabArray[i, i].GetComponentInChildren<Text>().text == symb);
+        toleft &= (gameMode.PrefabArray[sizeGrid - i - 1, i].GetComponentInChildren<Text>().text == symb);
     }
     if (toright || toleft)
     {
@@ -51,8 +51,8 @@ for (int col = 0; col < sizeGrid; col++)
     rows = true;
     for (int row = 0; row < sizeGrid; row++)
     {
-        cols &= (gameMode.prefabArray[col,row].GetComponentInChildren<Text>().text == symb);
-        rows &= (gameMode.prefabArray[row,col].GetComponentInChildren<Text>().text == symb);
+        cols &= (gameMode.PrefabArray[col,row].GetComponentInChildren<Text>().text == symb);
+        rows &= (gameMode.PrefabArray[row,col].GetComponentInChildren<Text>().text == symb);
     }
     if (cols || rows)
     {
@@ -64,11 +64,11 @@ return false;
 }
 bool HasEmptyCell()
 {
-    for (int col = 0; col < gameMode.sizeValue; col++)
+    for (int col = 0; col < gameMode.SizeValue; col++)
     {
-        for (int row = 0; row < gameMode.sizeValue; row++)
+        for (int row = 0; row < gameMode.SizeValue; row++)
         {
-            if (gameMode.prefabArray[col,row].GetComponentInChildren<Text>().text != gameMode.playerChoise && gameMode.prefabArray[col,row].GetComponentInChildren<Text>().text != AISymbol)
+            if (gameMode.PrefabArray[col,row].GetComponentInChildren<Text>().text != gameMode.PlayerChoise && gameMode.PrefabArray[col,row].GetComponentInChildren<Text>().text != AISymbol)
             {
                 return true;
             }
@@ -85,10 +85,10 @@ AIReversedChoice();
         bool result = true;
         while (result)
         {
-            int row = Random.Range(0, gameMode.sizeValue);
-            int cell = Random.Range(0, gameMode.sizeValue);
-            GameObject cellcheck = gameMode.prefabArray[row, cell];
-            if (cellcheck.GetComponentInChildren<Text>().text != gameMode.playerChoise && cellcheck.GetComponentInChildren<Text>().text != AISymbol)
+            int row = Random.Range(0, gameMode.SizeValue);
+            int cell = Random.Range(0, gameMode.SizeValue);
+            GameObject cellcheck = gameMode.PrefabArray[row, cell];
+            if (cellcheck.GetComponentInChildren<Text>().text != gameMode.PlayerChoise && cellcheck.GetComponentInChildren<Text>().text != AISymbol)
             {
                 cellcheck.GetComponentInChildren<Text>().text = AISymbol;
                 cellcheck.GetComponent<Button>().interactable = false;
@@ -96,7 +96,7 @@ AIReversedChoice();
             }
         }
     }
-    CheckWin(AISymbol, gameMode.sizeValue);
+    CheckWin(AISymbol, gameMode.SizeValue);
 }
 void GameOver(bool isGameOver)
 {
@@ -107,17 +107,17 @@ if (isGameOver)
 }
 else {
     List<GameObject> resultArray = new List<GameObject>();
-        for (int i = 0; i < gameMode.sizeValue; i++)
+        for (int i = 0; i < gameMode.SizeValue; i++)
         {
-        for (int y = 0; y < gameMode.sizeValue; y++)
+        for (int y = 0; y < gameMode.SizeValue; y++)
             {
-            if (gameMode.prefabArray[i, y].GetComponentInChildren<Text>().text == gameMode.playerChoise || gameMode.prefabArray[i, y].GetComponentInChildren<Text>().text == AISymbol)
+            if (gameMode.PrefabArray[i, y].GetComponentInChildren<Text>().text == gameMode.PlayerChoise || gameMode.PrefabArray[i, y].GetComponentInChildren<Text>().text == AISymbol)
                 {
-                resultArray.Add(gameMode.prefabArray[i, y]);
+                resultArray.Add(gameMode.PrefabArray[i, y]);
                 }
             }
         }
-    if (resultArray.Count==gameMode.sizeGridValue)
+    if (resultArray.Count==gameMode.SizeGridValue)
     {
         restart.SetActive(true);
         restart.GetComponent<RectTransform>().SetAsLastSibling();
@@ -126,13 +126,13 @@ else {
 }
 string AIReversedChoice()
 {
-if (gameMode.playerChoise == gameMode.playerX)
+if (gameMode.PlayerChoise == gameMode.PlayerX)
 {
-    AISymbol = gameMode.playerO;
+    AISymbol = gameMode.PlayerO;
 }
 else 
 { 
-    AISymbol = gameMode.playerX;
+    AISymbol = gameMode.PlayerX;
 }
 return AISymbol;
 }
