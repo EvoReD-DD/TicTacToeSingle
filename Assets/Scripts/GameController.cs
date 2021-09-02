@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
     [SerializeField] GameMode gameMode;
     [SerializeField] GameObject prefab;
     string AISymbol;
+    [SerializeField] GameObject xPrefab;
+    [SerializeField] GameObject oPrefab;
 
 
     public bool CheckWin(string symb, int sizeGrid)
@@ -90,20 +92,27 @@ public class GameController : MonoBehaviour
                 if (cellcheck.GetComponentInChildren<Text>().text != gameMode.PlayerChoise && cellcheck.GetComponentInChildren<Text>().text != AISymbol)
                 {
                     cellcheck.GetComponentInChildren<Text>().text = AISymbol;
-                    cellcheck.GetComponentInChildren<GameObject>().SetActive(true);
                     cellcheck.GetComponent<Button>().interactable = false;
-                    if (gameMode.PlayerChoise3D == gameMode.PlayerXPrefab3D)
+                    if (gameMode.Mode3DGame==true)
                     {
-                        cellcheck.GetComponentInChildren<Text>().text = "";
-                        cellcheck.GetComponentInChildren<GameObject>().SetActive(false);
-                        cellcheck.GetComponentInChildren<GameObject>().SetActive(true);
+                        if (gameMode.PlayerChoise3D == gameMode.PlayerXPrefab3D)
+                        {
+                            cellcheck.GetComponentInChildren<Text>().text = "";
+                            var cellcheckO = cellcheck.transform.GetChild(3);
+                            cellcheckO.gameObject.SetActive(true);
+                            var cellcheck3DPrefab = cellcheck.transform.GetChild(2);
+                            cellcheck3DPrefab.gameObject.SetActive(false);
+                        }
+                        else if (gameMode.PlayerChoise3D != gameMode.PlayerXPrefab3D)
+                        {
+                            cellcheck.GetComponentInChildren<Text>().text = "";
+                            var cellcheckX = cellcheck.transform.GetChild(1);
+                            cellcheckX.gameObject.SetActive(true);
+                            var cellcheck3DPrefab = cellcheck.transform.GetChild(2);
+                            cellcheck3DPrefab.gameObject.SetActive(false);
+                        }
                     }
-                    else if (gameMode.PlayerChoise3D != gameMode.PlayerXPrefab3D)
-                    {
-                        cellcheck.GetComponentInChildren<Text>().text = "";
-                        cellcheck.GetComponentInChildren<GameObject>().SetActive(false);
-                        cellcheck.GetComponentInChildren<GameObject>().SetActive(true);
-                    }
+                    
                     result = false;
                 }
             }

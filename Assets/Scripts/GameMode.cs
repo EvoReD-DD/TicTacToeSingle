@@ -96,7 +96,7 @@ public class GameMode : MonoBehaviour
             sizeGridValue = sizeValue * sizeValue;
             gridLayout.constraintCount = 9;
             prefabGrid.GetComponentInChildren<Text>().fontSize = 100;
-            gridLayout.cellSize = new Vector3(150, 150);
+            gridLayout.cellSize = new Vector3(120, 120);
             prefabArray = new GameObject[sizeValue, sizeValue];
             prefabButtonsArray = new GameObject[sizeValue, sizeValue];
         }

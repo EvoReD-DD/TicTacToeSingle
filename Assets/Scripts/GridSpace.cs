@@ -30,6 +30,7 @@ public class GridSpace : MonoBehaviour
             }
             else if (gameMode.PlayerChoise != gameMode.PlayerX)
             {
+                buttonTextObj.SetActive(false);
                 prefabSpace.SetActive(false);
                 prefabO.SetActive(true);
             }
