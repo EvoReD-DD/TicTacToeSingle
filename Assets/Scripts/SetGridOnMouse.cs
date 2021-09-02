@@ -6,7 +6,7 @@ public class SetGridOnMouse : MonoBehaviour
     [SerializeField] GameMode gameMode;
     private void OnMouseDown()
     {
-        Instantiate(gameMode.PlayerXChoise3D, this.transform.position, this.transform.rotation);
+        Instantiate(gameMode.PlayerChoise3D, this.transform.position, this.transform.rotation);
         //Destroy(OldPref);
     }
 }

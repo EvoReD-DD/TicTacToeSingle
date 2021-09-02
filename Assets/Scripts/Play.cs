@@ -20,10 +20,12 @@ public class Play : MonoBehaviour
         }
         else
         {
-            gameModeSingle.SetActive(false);
+            gameModeSingle.SetActive(true);
             background.SetActive(false);
             camera.orthographic = false;
-            camera.transform.position = new Vector3(536, 779, 229);
+            camera.transform.position = new Vector3(536, 1128, -1465);
+            camera.fieldOfView = 85;
+            camera.farClipPlane = 2000;
         }
     }
 }

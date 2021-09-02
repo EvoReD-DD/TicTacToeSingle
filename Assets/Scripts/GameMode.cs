@@ -19,7 +19,7 @@ public class GameMode : MonoBehaviour
     private bool mode3DGame;
     private GameObject[,] prefabArray;
     private GameObject playerXChoise3D;
-    private GameObject playerOChoise3D;
+    private GameObject playerChoise3D;
     private string playerChoise;
     private int sizeGridValue;
     private int sizeValue;
@@ -30,6 +30,7 @@ public class GameMode : MonoBehaviour
     void Start()
     {
         playerChoise = playerX;
+        playerChoise3D = playerXPrefab3D;
 
     }
 
@@ -40,100 +41,91 @@ public class GameMode : MonoBehaviour
         {
             for (int y = 0; y < sizeValue; y++)
             {
-                if (mode3DGame == false)
+                if (sizeValue == 3)
                 {
                     var createdGrid = Instantiate(prefabGrid, new Vector3(0, 0, 0), Quaternion.identity, gridParent);
                     prefabArray[i, y] = createdGrid;
+                    createdGrid.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 }
-                else {
-                    var createPrefabGrid = Instantiate(prefab3DGrid, prefabFloorGridParent.position, Quaternion.identity, prefabFloorGridParent);
-                    createPrefabGrid.transform.localScale =new Vector3(0.6f,0.6f,0.6f);
-                    prefabButtonsArray[i, y] = createPrefabGrid;
+                if (sizeValue == 6)
+                {
+                    var createdGrid = Instantiate(prefabGrid, new Vector3(0, 0, 0), Quaternion.identity, gridParent);
+                    prefabArray[i, y] = createdGrid;
+                    createdGrid.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+                    
                 }
+                if (sizeValue == 9)
+                {
+                    var createdGrid = Instantiate(prefabGrid, new Vector3(0, 0, 0), Quaternion.identity, gridParent);
+                    prefabArray[i, y] = createdGrid;
+                    createdGrid.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+                    
+                }
+                if (sizeValue == 15)
+                {
+                    var createdGrid = Instantiate(prefabGrid, new Vector3(0, 0, 0), Quaternion.identity, gridParent);
+                    prefabArray[i, y] = createdGrid;
+                    createdGrid.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                }
+
             }
         }
     }
-
     public void GridSize()
     {
         if (gridSize.value == 0)
         {
             sizeValue = 3;
             sizeGridValue = sizeValue * sizeValue;
-            if (mode3DGame == false)
-            {
-                prefabArray = new GameObject[sizeValue, sizeValue];
-            }
-            else
-            {
-                prefabButtonsArray = new GameObject[sizeValue, sizeValue];
-            }
-
+            prefabArray = new GameObject[sizeValue, sizeValue];
+            prefabButtonsArray = new GameObject[sizeValue, sizeValue];
         }
         if (gridSize.value == 1)
         {
             sizeValue = 6;
             sizeGridValue = sizeValue * sizeValue;
             gridLayout.constraintCount = 6;
-            if (mode3DGame == false)
-            {
-                gridLayout.cellSize = new Vector3(175, 175);
-                prefabGrid.GetComponentInChildren<Text>().fontSize = 150;
-                prefabArray = new GameObject[sizeValue, sizeValue];
-            }
-            else
-            {
-                prefabButtonsArray = new GameObject[sizeValue, sizeValue];
-            }
+            gridLayout.cellSize = new Vector3(175, 175);
+            prefabGrid.GetComponentInChildren<Text>().fontSize = 150;
+            prefabArray = new GameObject[sizeValue, sizeValue];
+            prefabButtonsArray = new GameObject[sizeValue, sizeValue];
         }
         if (gridSize.value == 2)
         {
             sizeValue = 9;
             sizeGridValue = sizeValue * sizeValue;
             gridLayout.constraintCount = 9;
-            if (mode3DGame == false)
-            {
-                prefabGrid.GetComponentInChildren<Text>().fontSize = 100;
-                gridLayout.cellSize = new Vector3(150, 150);
-                prefabArray = new GameObject[sizeValue, sizeValue];
-            }
-            else
-            {
-                prefabButtonsArray = new GameObject[sizeValue, sizeValue];
-            }
+            prefabGrid.GetComponentInChildren<Text>().fontSize = 100;
+            gridLayout.cellSize = new Vector3(150, 150);
+            prefabArray = new GameObject[sizeValue, sizeValue];
+            prefabButtonsArray = new GameObject[sizeValue, sizeValue];
         }
         if (gridSize.value == 3)
         {
             sizeValue = 15;
             sizeGridValue = sizeValue * sizeValue;
             gridLayout.constraintCount = 15;
-            if (mode3DGame == false)
-            {
-                prefabArray = new GameObject[sizeValue, sizeValue];
-                prefabGrid.GetComponentInChildren<Text>().fontSize = 60;
-                gridLayout.cellSize = new Vector3(68, 68);
-            }
-            else
-            {
-                prefabButtonsArray = new GameObject[sizeValue, sizeValue];
-            }
+            prefabArray = new GameObject[sizeValue, sizeValue];
+            prefabGrid.GetComponentInChildren<Text>().fontSize = 60;
+            gridLayout.cellSize = new Vector3(68, 68);
+            prefabButtonsArray = new GameObject[sizeValue, sizeValue];
         }
     }
-    
+
     public void PlayerChoose()
     {
         if (playerChange.isOn)
         {
             playerText.text = playerX;
             playerChoise = playerX;
-            playerXChoise3D = playerXPrefab3D;
-
+            playerChoise3D = playerXPrefab3D;
+            
         }
         else
         {
             playerText.text = playerO;
             playerChoise = playerO;
-            playerOChoise3D = playerOPrefab3D;
+            playerChoise3D = playerOPrefab3D;
         }
     }
     public void ModeChoice()
@@ -149,9 +141,14 @@ public class GameMode : MonoBehaviour
             modeChoice.text = "3D";
         }
     }
-    public GameObject PlayerXChoise3D
+    public GameObject PlayerXPrefab3D
     {
-        get { return playerXChoise3D; }
+        get { return playerXPrefab3D; }
+    }
+    
+    public GameObject PlayerChoise3D
+    {
+        get { return playerChoise3D; }
     }
     public bool Mode3DGame
     {

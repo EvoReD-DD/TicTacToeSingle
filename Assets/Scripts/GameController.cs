@@ -90,7 +90,20 @@ public class GameController : MonoBehaviour
                 if (cellcheck.GetComponentInChildren<Text>().text != gameMode.PlayerChoise && cellcheck.GetComponentInChildren<Text>().text != AISymbol)
                 {
                     cellcheck.GetComponentInChildren<Text>().text = AISymbol;
+                    cellcheck.GetComponentInChildren<GameObject>().SetActive(true);
                     cellcheck.GetComponent<Button>().interactable = false;
+                    if (gameMode.PlayerChoise3D == gameMode.PlayerXPrefab3D)
+                    {
+                        cellcheck.GetComponentInChildren<Text>().text = "";
+                        cellcheck.GetComponentInChildren<GameObject>().SetActive(false);
+                        cellcheck.GetComponentInChildren<GameObject>().SetActive(true);
+                    }
+                    else if (gameMode.PlayerChoise3D != gameMode.PlayerXPrefab3D)
+                    {
+                        cellcheck.GetComponentInChildren<Text>().text = "";
+                        cellcheck.GetComponentInChildren<GameObject>().SetActive(false);
+                        cellcheck.GetComponentInChildren<GameObject>().SetActive(true);
+                    }
                     result = false;
                 }
             }
