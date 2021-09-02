@@ -5,12 +5,25 @@ using UnityEngine.UI;
 
 public class Play : MonoBehaviour
 {
-    public GameObject menu;
-    public GameObject gameModeSingle;
+    [SerializeField] GameObject menu;
+    [SerializeField] GameObject gameModeSingle;
+    [SerializeField] GameMode gameMode;
+    [SerializeField] GameObject background;
+    [SerializeField] Camera camera;
     
     public void Playing()
     {
         menu.SetActive(false);
-        gameModeSingle.SetActive(true);
+        if (gameMode.Mode3DGame == false)
+        {
+            gameModeSingle.SetActive(true);
+        }
+        else
+        {
+            gameModeSingle.SetActive(false);
+            background.SetActive(false);
+            camera.orthographic = false;
+            camera.transform.position = new Vector3(536, 779, 229);
+        }
     }
 }
